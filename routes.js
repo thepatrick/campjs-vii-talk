@@ -2,7 +2,7 @@ const cowsay = require('cowsay');
 
 exports.cow = function speak(req, res) {
   if (req.query.mode === 'speak') {
-    res.send(cowsay.speak({
+    res.send(cowsay.say({
       text: req.query.thought
     }));
   } else {
