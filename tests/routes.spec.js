@@ -27,5 +27,25 @@ describe('routes', function() {
                 ||----w |
                 ||     ||`);
     });
+    it('thinks', function() {
+      const req = {
+        query: {
+          mode: 'think',
+          thought: 'Hello campjs vii!',
+        },
+      };
+      const res = {
+        send: sinon.stub(),
+      };
+      routes.cow(req, res);
+      expect(res.send).to.have.been.calledWith(` ___________________
+( Hello campjs vii! )
+ -------------------
+        o   ^__^
+         o  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||`);
+    });
   });
 });
