@@ -1,10 +1,19 @@
 // karma.conf.js
 
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
+
+let browsers = ['Firefox', 'Chrome'];
+
+if (process.env.BROWSER && process.env.BVER) {
+  const browser = process.env.BROWSER;
+  browsers = [browser[0].toUpperCase() + browser.substr(1)];
+  process.env[`${browser.toUpperCase()}_BIN`] = path.join(__dirname, 'node_modules', '.bin', `start-${browser}`);
+}
 
 module.exports = function (config) {
   config.set({
-    browsers: ['Firefox', 'Chrome'],
+    browsers,
     frameworks: ['mocha', 'sinon'],
     files: [
       'tests.webpack.js'
